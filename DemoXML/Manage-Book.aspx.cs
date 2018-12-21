@@ -12,20 +12,33 @@ namespace DemoXML
 {
     public partial class Manage_Book : System.Web.UI.Page
     {
-        DataSet dsresult = new DataSet();
-        XmlDocument doc = new XmlDocument();
-        XmlReader xmlReader = XmlReader.Create("D:\\StudyDocuments\\TDMU_4Years\\Nam4_HK1\\CongNgheXMLVaUngDung\\Final\\DemoXML\\DemoXML\\" + "data.xml");
-        XmlElement exelement;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
-           
+
+            LoadData(); 
+
+            /*XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+
+            XmlWriter xmlWriter = XmlWriter.Create("D:\\StudyDocuments\\TDMU_4Years\\Nam4_HK1\\CongNgheXMLVaUngDung\\Final\\DemoXML\\DemoXML\\" + "data.xml", settings);
+            doc.Save(xmlWriter);*/
+
+        }
+
+        public void LoadData()
+        {
+            DataSet dsresult = new DataSet();
+            XmlDocument doc = new XmlDocument();
+            XmlReader xmlReader = XmlReader.Create(@"D:\TAI LIEU LAP TRINH\TDMU\Nam 4\Cong nghe XML va Ung dung\CuoiKi\DemoXML\DemoXML\" + "data.xml");
+            XmlElement exelement;
+
             doc.Load(xmlReader);
             xmlReader.Close();
 
             exelement = doc.DocumentElement;
-            
+
             if (exelement != null)
             {
                 XmlNodeReader nodereader = new XmlNodeReader(exelement);
@@ -38,13 +51,6 @@ namespace DemoXML
                 GridView1.DataSource = null;
                 GridView1.DataBind();
             }
-            
-
-            /*XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Indent = true;
-
-            XmlWriter xmlWriter = XmlWriter.Create("D:\\StudyDocuments\\TDMU_4Years\\Nam4_HK1\\CongNgheXMLVaUngDung\\Final\\DemoXML\\DemoXML\\" + "data.xml", settings);
-            doc.Save(xmlWriter);*/
 
         }
 
@@ -66,6 +72,7 @@ namespace DemoXML
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridView1.EditIndex = e.NewEditIndex;
+            LoadData();
         }
     }
 }
