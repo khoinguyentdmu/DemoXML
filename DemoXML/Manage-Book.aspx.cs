@@ -31,7 +31,7 @@ namespace DemoXML
         {
             DataSet dsresult = new DataSet();
             XmlDocument doc = new XmlDocument();
-            XmlReader xmlReader = XmlReader.Create(@"D:\TAI LIEU LAP TRINH\TDMU\Nam 4\Cong nghe XML va Ung dung\CuoiKi\DemoXML\DemoXML\" + "data.xml");
+            XmlReader xmlReader = XmlReader.Create(Server.MapPath("./") + "/data.xml");
             XmlElement exelement;
 
             doc.Load(xmlReader);
