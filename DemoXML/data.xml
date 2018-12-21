@@ -1,17 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Books>
-  <Book Id="0">
-    <Name>Dũng sĩ diệt mồi</Name>
-    <CategoryBook>Rình mò</CategoryBook>
-    <Author>Người nhậu</Author>
-    <Publisher>Những người cùng nhậu</Publisher>
+  <Book Id="1">
+    <Name>Hạt giống tâm hồn</Name>
+    <CategoryBook>Tâm lý</CategoryBook>
+    <Author>Nhiều tác giả</Author>
+    <Publisher>Tổng hợp</Publisher>
     <Price>10000</Price>
   </Book>
-  <Book Id="1">
-    <Name>1</Name>
-    <CategoryBook>22</CategoryBook>
-    <Author>2</Author>
-    <Publisher>2</Publisher>
-    <Price>2</Price>
+   <Book Id="2">
+    <Name>Cuộc phiêu lưu của hai lúa</Name>
+    <CategoryBook>Phiêu lưu</CategoryBook>
+    <Author>Kim Đồng</Author>
+    <Publisher>Tuổi Trẻ</Publisher>
+    <Price>20000</Price>
+  </Book>
+  <Book Id="3">
+    <Name>Hạt giống tâm hồn</Name>
+    <CategoryBook>Tâm lý</CategoryBook>
+    <Author>Nhiều tác giả</Author>
+    <Publisher>Tổng hợp</Publisher>
+    <Price>10000</Price>
+  </Book>
+  <Book Id="4">
+    <Name>Cuộc phiêu lưu của hai lúa</Name>
+    <CategoryBook>Phiêu lưu</CategoryBook>
+    <Author>Kim Đồng</Author>
+    <Publisher>Tuổi Trẻ</Publisher>
+    <Price>20000</Price>
   </Book>
 </Books>
+

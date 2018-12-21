@@ -62,7 +62,8 @@
                     <asp:Button ID="btnInsert" runat="server" Text="Thêm mới" BackColor="#9999FF" OnClick="btnInsert_Click" />
                 </td>
                 <td>
-                    &nbsp;</td>
+                    <asp:LinkButton ID="lbPriceFilter" runat="server" OnClick="lbPriceFilter_Click">Lọc những sách có giá bán từ 15000</asp:LinkButton>
+                    </td>
             </tr>
         </table>
 

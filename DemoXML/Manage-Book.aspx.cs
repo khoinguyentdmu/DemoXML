@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using System.Xml.Xsl;
 
 namespace DemoXML
 {
@@ -14,15 +15,14 @@ namespace DemoXML
     {
         //https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmlnode.replacechild?view=netframework-4.7.2
 
-        private string fileNameXML = "data.xml";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
 
-            LoadDataToGridView(LoadDataFromXMlFile());
+            LoadDataToGridView(LoadDataFromXMlFile("data.xml"));
         }
 
-        private void SaveDataToXMLFile(XmlDocument doc)
+        private void SaveDataToXMLFile(XmlDocument doc, string fileNameXML)
         {
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
@@ -32,7 +32,7 @@ namespace DemoXML
             xmlWriter.Close();
         }
 
-        public XmlDocument LoadDataFromXMlFile()
+        public XmlDocument LoadDataFromXMlFile(string fileNameXML)
         {
             XmlDocument doc = new XmlDocument();
             XmlReader xmlReader = XmlReader.Create(Server.MapPath("./") + "/" + fileNameXML);
@@ -66,13 +66,13 @@ namespace DemoXML
         protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridView1.EditIndex = -1;
-            LoadDataToGridView(LoadDataFromXMlFile());
+            LoadDataToGridView(LoadDataFromXMlFile("data.xml"));
         }
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string id = GridView1.DataKeys[e.RowIndex].Value.ToString();
-            XmlDocument doc = LoadDataFromXMlFile();
+            XmlDocument doc = LoadDataFromXMlFile("data.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNode curNode = root.FirstChild;
@@ -86,8 +86,8 @@ namespace DemoXML
                 curNode = curNode.NextSibling;
             }
 
-            SaveDataToXMLFile(doc);
-            LoadDataToGridView(LoadDataFromXMlFile());
+            SaveDataToXMLFile(doc, "data.xml");
+            LoadDataToGridView(LoadDataFromXMlFile("data.xml"));
         }
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -99,7 +99,7 @@ namespace DemoXML
             string publisher = (GridView1.Rows[e.RowIndex].Cells[4].Controls[0] as TextBox).Text;
             string price = (GridView1.Rows[e.RowIndex].Cells[5].Controls[0] as TextBox).Text;
 
-            XmlDocument doc = LoadDataFromXMlFile();
+            XmlDocument doc = LoadDataFromXMlFile("data.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNode curNode = root.FirstChild;
@@ -118,14 +118,14 @@ namespace DemoXML
             }
 
             GridView1.EditIndex = -1;
-            SaveDataToXMLFile(doc);
-            LoadDataToGridView(LoadDataFromXMlFile());
+            SaveDataToXMLFile(doc, "data.xml");
+            LoadDataToGridView(LoadDataFromXMlFile("data.xml"));
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridView1.EditIndex = e.NewEditIndex;
-            LoadDataToGridView(LoadDataFromXMlFile());
+            LoadDataToGridView(LoadDataFromXMlFile("data.xml"));
         }
 
         protected void btnInsert_Click(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace DemoXML
             string publisher = txtPublisher.Text;
             string price = txtPrice.Text;
 
-            XmlDocument doc = LoadDataFromXMlFile();
+            XmlDocument doc = LoadDataFromXMlFile("data.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlElement ele1 = doc.CreateElement("Book");
@@ -165,8 +165,17 @@ namespace DemoXML
 
             doc.DocumentElement.AppendChild(ele1);
 
-            SaveDataToXMLFile(doc);
-            LoadDataToGridView(LoadDataFromXMlFile());
+            SaveDataToXMLFile(doc, "data.xml");
+            LoadDataToGridView(LoadDataFromXMlFile("data.xml"));
+        }
+
+        protected void lbPriceFilter_Click(object sender, EventArgs e)
+        {
+            string baseName = Server.MapPath("./");
+            XslTransform xslTransform = new XslTransform();
+            xslTransform.Load(baseName + "\\XSLTFile1.xslt");
+            xslTransform.Transform(baseName + "\\data.xml", baseName + "\\data-out.xml");
+            LoadDataToGridView(LoadDataFromXMlFile("data-out.xml"));
         }
     }
 }
