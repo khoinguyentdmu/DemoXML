@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Books>
   <Book Id="1">
     <Name>Hạt giống tâm hồn</Name>
@@ -7,7 +7,7 @@
     <Publisher>Tổng hợp</Publisher>
     <Price>10000</Price>
   </Book>
-   <Book Id="2">
+  <Book Id="2">
     <Name>Cuộc phiêu lưu của hai lúa</Name>
     <CategoryBook>Phiêu lưu</CategoryBook>
     <Author>Kim Đồng</Author>
@@ -29,4 +29,3 @@
     <Price>20000</Price>
   </Book>
 </Books>
-

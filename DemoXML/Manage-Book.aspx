@@ -9,67 +9,101 @@
         .auto-style1 {
             text-align: center;
             font-weight: bold;
+            background-color: #FFFFCC;
+        }
+        .auto-style2 {
+            text-align: left;
+            width: 87px;
+            background-color: #FFFFCC;
+        }
+        .auto-style3 {
+            text-align: center;
+            font-weight: bold;
+            width: 90px;
+            background-color: #FFFFCC;
+        }
+        .auto-style4 {
+            text-align: center;
+            font-weight: bold;
+            width: 211px;
+            background-color: #FFFFCC;
+        }
+        .auto-style5 {
+            font-weight: bold;
+            width: 90px;
+            background-color: #FFFFCC;
+        }
+        .auto-style6 {
+            text-align: left;
+            width: 211px;
+            background-color: #FFFFCC;
+        }
+        .auto-style7 {
+        }
+        .auto-style8 {
+            text-align: left;
+        }
+        .auto-style9 {
+            font-size: x-large;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <p>
-            <strong>DEMO QUẢN LÝ THÔNG TIN SÁCH</strong>
+        <p class="auto-style8">
+            <strong><span class="auto-style9">&nbsp;QUẢN LÝ THÔNG TIN SÁCH</span></strong>
         </p>
-        <p>
-            Danh sách sách có trong thư viện
-        </p>
-        <table>
+        <table border="1" class="auto-style7">
             <tr>
-                <td class="auto-style1">Thêm sách</td>
-                <td class="auto-style1">Thống kê</td>
+                <td class="auto-style1" colspan="2">Thêm sách</td>
+                <td class="auto-style4">Thống kê</td>
             </tr>
             <tr>
-                <td>
-                    <table>
-                        <tr>
-                            <td>Mã sách</td>
-                            <td>
-                                <asp:TextBox ID="txtId" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>Tên sách</td>
-                            <td>
-                                <asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>Loại sách</td>
-                            <td>
-                                <asp:TextBox ID="txtCategoryBook" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>Tác giả</td>
-                            <td>
-                                <asp:TextBox ID="txtAuthor" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>Nhà xuất bản</td>
-                            <td>
-                                <asp:TextBox ID="txtPublisher" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>Giá bán</td>
-                            <td>
-                                <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox></td>
-                        </tr>
-                    </table>
-                    <asp:Button ID="btnInsert" runat="server" Text="Thêm mới" BackColor="#9999FF" OnClick="btnInsert_Click" />
-                </td>
-                <td>
-                    <asp:LinkButton ID="lbPriceFilter" runat="server" OnClick="lbPriceFilter_Click">Lọc những sách có giá bán từ 15000</asp:LinkButton>
-                    </td>
+                <td class="auto-style2">Mã sách</td>
+                <td class="auto-style3"><asp:TextBox ID="txtId" runat="server"></asp:TextBox></td>
+                <td class="auto-style6"><asp:LinkButton ID="lblAllBooks" runat="server" OnClick="lblAllBooks_Click">Tất cả sách</asp:LinkButton></td>
+            </tr>
+            <tr>
+                <td class="auto-style2">Tên sách</td>
+                <td class="auto-style3"><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
+                <td class="auto-style6"><asp:LinkButton ID="lbPriceFilter" runat="server" OnClick="lbPriceFilter_Click">Những sách có giá bán từ 15000</asp:LinkButton></td>
+            </tr>
+            <tr>
+                <td class="auto-style2">Loại sách</td>
+                <td class="auto-style3"><asp:TextBox ID="txtCategoryBook" runat="server"></asp:TextBox></td>
+                <td class="auto-style6">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">Tác giả</td>
+                <td class="auto-style3"><asp:TextBox ID="txtAuthor" runat="server"></asp:TextBox></td>
+                <td class="auto-style6">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">Nhà xuất bản</td>
+                <td class="auto-style3"><asp:TextBox ID="txtPublisher" runat="server"></asp:TextBox></td>
+                <td class="auto-style6">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">Giá bán</td>
+                <td class="auto-style3"><asp:TextBox ID="txtPrice" runat="server"></asp:TextBox></td>
+                <td class="auto-style6">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2"></td>
+                <td class="auto-style5"><asp:Button ID="btnInsert" runat="server" Text="Thêm mới" BackColor="#3399FF" OnClick="btnInsert_Click" /></td>
+                <td class="auto-style4">&nbsp;</td>
             </tr>
         </table>
-
-        
+        <br />
+        <asp:Label ID="Label1" runat="server" Text="Tìm kiếm theo mã sách:"></asp:Label><asp:TextBox ID="txtIdSearch" runat="server"></asp:TextBox>
+        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Tìm kiếm" />
         <p>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Id" ForeColor="#333333" GridLines="None" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" Width="920px">
+            <em>Danh sách sách
+        </em>
+        </p>
+
+        <p>
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Id" ForeColor="#333333" GridLines="None" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" Width="920px" BorderColor="Black" BorderWidth="1px">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="Mã sách" ReadOnly="true" />

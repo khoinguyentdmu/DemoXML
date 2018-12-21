@@ -36,7 +36,7 @@ namespace DemoXML
         {
             XmlDocument doc = new XmlDocument();
             XmlReader xmlReader = XmlReader.Create(Server.MapPath("./") + "/" + fileNameXML);
-           
+
             doc.Load(xmlReader);
             xmlReader.Close();
             return doc;
@@ -176,6 +176,32 @@ namespace DemoXML
             xslTransform.Load(baseName + "\\XSLTFile1.xslt");
             xslTransform.Transform(baseName + "\\data.xml", baseName + "\\data-out.xml");
             LoadDataToGridView(LoadDataFromXMlFile("data-out.xml"));
+        }
+
+        protected void lblAllBooks_Click(object sender, EventArgs e)
+        {
+            LoadDataToGridView(LoadDataFromXMlFile("data.xml"));
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string idSearch = txtIdSearch.Text;
+
+            XmlDocument doc = LoadDataFromXMlFile("data.xml");
+            XmlElement root = doc.DocumentElement;
+
+            XmlNode curNode = root.FirstChild;
+            while (curNode != null)
+            {
+                XmlNode tempNode = curNode;
+                curNode = curNode.NextSibling;
+                if (!tempNode.Attributes["Id"].Value.Equals(idSearch))
+                {
+                    root.RemoveChild(tempNode);
+                }
+            }
+
+            LoadDataToGridView(doc);
         }
     }
 }
